@@ -171,6 +171,7 @@ private class Manager : NSObject, LiveChatOverlayViewControllerDelegate, WebView
                 self.window.isHidden = true
                 
                 UnreadMessagesCounter.resetCounter()
+                self.clearSession()
                 self.delegate?.chatDismissed?()
             }
             
