@@ -73,7 +73,6 @@ public class LiveChat : NSObject {
     
     @objc public class func dismissChat(animated: Bool = true, completion: ((Bool) -> Void)? = nil) {
         Manager.sharedInstance.dismissChat(animated: animated, completion: completion)
-        Manager.sharedInstance.clearSession()
     }
     
     @objc public class func clearSession() {
@@ -173,7 +172,6 @@ private class Manager : NSObject, LiveChatOverlayViewControllerDelegate, WebView
                 
                 UnreadMessagesCounter.resetCounter()
                 self.delegate?.chatDismissed?()
-                self.clearSession()
             }
             
             if let completion = completion {
