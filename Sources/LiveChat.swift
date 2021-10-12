@@ -45,6 +45,12 @@ public class LiveChat : NSObject {
         }
     }
     
+    @objc public static var customVariables : [String:String]? {
+        didSet {
+            updateCustomVariables()
+        }
+    }
+    
     @objc public static weak var delegate : LiveChatDelegate? {
         didSet {
             Manager.sharedInstance.delegate = delegate
@@ -83,6 +89,12 @@ public class LiveChat : NSObject {
         if let licenseId = self.licenseId {
             let conf = LiveChatConfiguration(licenseId: licenseId, groupId: self.groupId ?? "0", name: self.name ?? "", email: self.email ?? "")
             Manager.sharedInstance.configuration = conf
+        }
+    }
+    
+    private class func updateCustomVariables() {
+        if let customVariables = self.customVariables {
+            Manager.sharedInstance.customVariables=Array(customVariables)
         }
     }
 }
