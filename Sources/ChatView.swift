@@ -192,7 +192,7 @@ class ChatView : UIView, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHand
             
             if finished {
                 self.webViewBridge?.postBlurEvent()
-                self.clearSession()
+                /* self.clearSession() */
                 self.chatHidden()
             }
             
