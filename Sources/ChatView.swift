@@ -172,7 +172,7 @@ class ChatView : UIView, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHand
         }
     }
     
-    func dismissChat(animated: Bool,clearChatSession: Bool = false, completion: ((Bool) -> Void)? = nil) {
+    func dismissChat(animated: Bool, completion: ((Bool) -> Void)? = nil) {
         guard let wv = webView else { return }
         
         if animating {
@@ -192,9 +192,7 @@ class ChatView : UIView, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHand
             
             if finished {
                 self.webViewBridge?.postBlurEvent()
-                 if(clearChatSession){
-                    self.clearSession()
-                }
+                /* self.clearSession() */
                 self.chatHidden()
             }
             
@@ -342,7 +340,7 @@ class ChatView : UIView, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHand
     }
     
     @objc func close() {
-        dismissChat(animated: true,clearChatSession: true) { (finished) in
+        dismissChat(animated: true) { (finished) in
             if finished {
                 if let delegate = self.delegate {
                     delegate.closedChatView()
